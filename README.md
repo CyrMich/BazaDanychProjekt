@@ -1,2 +1,2 @@
 # BazaDanychProjekt
-Projekt z baz danych.
+Projekt z przedmiotu bazy danych.
