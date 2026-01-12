@@ -413,3 +413,4 @@ C:\Users\Michal\source\repos\CarRentalApp\CarRentalApp\obj\Debug\net9.0\refint\C
 C:\Users\Michal\source\repos\CarRentalApp\CarRentalApp\obj\Debug\net9.0\CarRentalApp.pdb
 C:\Users\Michal\source\repos\CarRentalApp\CarRentalApp\obj\Debug\net9.0\CarRentalApp.genruntimeconfig.cache
 C:\Users\Michal\source\repos\CarRentalApp\CarRentalApp\obj\Debug\net9.0\ref\CarRentalApp.dll
+C:\Users\Michal\source\repos\CarRentalApp\CarRentalApp\obj\Debug\net9.0\CarRentalApp.sourcelink.json
