@@ -9,7 +9,7 @@ Autor: Michał Cyran Technologia ASP.NET Core MVC
 2. Instrukcja instalacji i uruchomienia.
    - Pobierz repozytorium projektu z GitHub lub rozpakuj dostarczone archiwum ZIP.
    - Uruchom plik rozwiązania Projekt.sln w Visual Studio.
-   - Inicjalizacja Bazy Danych: Otwórz konsolę: Narzędzia (Tools) - Menedżer pakietów NuGet - Konsola menedżera pakietów. Wpisz polecenie: Update-Database. System automatycznie utworzy bazę danych oraz tabele na podstawie migracji.
+   - Inicjalizacja Bazy Danych: Otwórz konsolę: Narzędzia (Tools) -> Konsola menedżera pakietów. Następnie wpisz polecenie: Update-Database. System automatycznie utworzy bazę danych oraz tabele na podstawie migracji.
    - Uruchom aplikację przyciskiem "Start" lub klawiszem F5.
 
 3. Konfiguracja
