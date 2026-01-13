@@ -17,6 +17,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     await CarRentalApp.Models.TworzenieAdmina.InicjalizujRole(services);
+    await CarRentalApp.Models.TworzenieAdmina.InicjalizujKategorie(services);
 }
 
 
@@ -37,7 +38,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Car}/{action=Index}/{id?}")
+    pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

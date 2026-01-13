@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CarRentalApp.Models
 {
-    // Atrybut sprawdzający, czy jedna data jest większa od drugiej
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public class DateGreaterThanAttribute : ValidationAttribute
     {
@@ -18,7 +17,7 @@ namespace CarRentalApp.Models
         {
             var currentValue = value as DateTime?;
             if (currentValue == null)
-                return ValidationResult.Success; // ignorujemy null, Required waliduje osobno
+                return ValidationResult.Success;
 
             var property = validationContext.ObjectType.GetProperty(_comparisonProperty);
             if (property == null)
@@ -26,7 +25,7 @@ namespace CarRentalApp.Models
 
             var comparisonValue = property.GetValue(validationContext.ObjectInstance) as DateTime?;
             if (comparisonValue == null)
-                return ValidationResult.Success; // jeśli brak porównania, nie walidujemy
+                return ValidationResult.Success; 
 
             if (currentValue <= comparisonValue)
                 return new ValidationResult(ErrorMessage ?? $"{validationContext.DisplayName} musi być po {_comparisonProperty}");

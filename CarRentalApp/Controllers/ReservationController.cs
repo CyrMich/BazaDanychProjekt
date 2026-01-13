@@ -96,7 +96,7 @@ namespace CarRentalApp.Controllers
             var myReservations = await _context.Reservations
                 .Include(r => r.Car)
                 .Where(r => r.UserId == userId)
-                .OrderByDescending(r => r.StartDate) // Najnowsze na górze
+                .OrderByDescending(r => r.StartDate)
                 .ToListAsync();
 
             return View(myReservations);
@@ -164,8 +164,8 @@ namespace CarRentalApp.Controllers
             }
 
             var reservation = await _context.Reservations
-                .Include(r => r.Car)  // Dołączamy, by pokazać co usuwamy
-                .Include(r => r.User) // Dołączamy, by pokazać czyja to rezerwacja
+                .Include(r => r.Car)  
+                .Include(r => r.User) 
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (reservation == null)
