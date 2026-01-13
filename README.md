@@ -19,7 +19,8 @@ Autor: Michał Cyran Technologia ASP.NET Core MVC
    - Konto Administratora (Pełne uprawnienia) Login: admin@admin.pl Hasło: !Admin123. Uprawnienia: wszystkie
    - Konto przykładowe można założyć swoje poprzez link "Zarejestruj" w prawym górnym rogu. Uprawnienia: Tylko odczyt danych, brak dostępu do klucz edycji i usuwania
 
-Opis działania aplikacji
+Opis działania aplikacji:
+
 System służy do zarządzania systemem rezerwacji samochodów.
 
 Główne moduły:
