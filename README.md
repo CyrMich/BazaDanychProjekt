@@ -16,7 +16,7 @@ Autor: Michał Cyran Technologia ASP.NET Core MVC
    - Aplikacja korzysta z domyślnego połączenia do lokalnej bazy danych (LocalDB). Łańcuch połączenia znajduje się w pliku appsettings.json
 
 4. Testowi Użytkownicy
-   - Konto Administratora (Pełne uprawnienia) Login: admin@admin.pl Hasło: !Admin123. Uprawnienia: wszystkie
+   - Konto Administratora. Login: admin@admin.pl Hasło: !Admin123. Uprawnienia: wszystkie
    - Konto przykładowe można założyć swoje poprzez link "Zarejestruj" w prawym górnym rogu. Uprawnienia: Tylko odczyt danych, brak dostępu do klucz edycji i usuwania
 
 Opis działania aplikacji:
