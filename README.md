@@ -24,8 +24,8 @@ System służy do zarządzania systemem rezerwacji samochodów.
 
 Główne moduły:
 
-Dashboard (Statystyki) Prezentuje kluczowe wskaźniki agencji: liczbę pracowników, aktywnych umów oraz liczbę klientów
-Moduł Pracownicy: Wyświetla listę zatrudnionych osób Pozwala na filtrowanie listy po nazwisku i imieniu CRUD - Administrator może dodawać edytować i usuwać pracowników. Zwykły użytkownik ma dostęp tylko do podglądu. Podczas dodawania pracownika system wymusza przypisanie mu pierwszej umowy
-Moduł Umowy i Klienci Pozwala na wyświetlanie wszystkich umów aby kontrolować czy się nie przedawniły Zarządzanie bazą klientów
-Bezpieczeństwo i Role Zastosowano ASP.NET Core Identity System blokuje dostęp do danych dla niezalogowanych użytkowników Przyciski funkcyjne "Edytuj" i "Usuń" są ukrywane dla osób bez Administratora
-API Aplikacja wystawia dane w formacie JSON pod adresem /api/PracownicyApi co umożliwia integracje z zewnętrznymi systemami
+Samochody: Wyświetla listę dostępnych samochodów wraz z marką, modelem, rokiem produkcji, ceną za dzień oraz kategorią. Administrator ma możliwość dodawania, edycji i usuwania samochodów. Zwykły użytkownik ma dostęp wyłącznie do podglądu danych.
+Kategorie samochodów: Umożliwia zarządzanie kategoriami pojazdów (np. Sedan, SUV). Kategorie są wykorzystywane przy tworzeniu i edycji samochodów.
+Rezerwacje: Pozwala zalogowanym użytkownikom na tworzenie rezerwacji samochodów poprzez wybór pojazdu oraz zakresu dat. System automatycznie przypisuje rezerwację do zalogowanego użytkownika oraz blokuje możliwość rezerwacji samochodu, który jest już zajęty w wybranym terminie.
+Bezpieczeństwo i role: Zastosowano ASP.NET Core Identity. System blokuje dostęp do tworzenia rezerwacji dla niezalogowanych użytkowników. Funkcje administracyjne (dodawanie, edycja i usuwanie danych) dostępne są wyłącznie dla administratora.
+API: Aplikacja udostępnia API CRUD dla głównej encji systemu (samochodów), umożliwiające komunikację z zewnętrznymi systemami w formacie JSON.
