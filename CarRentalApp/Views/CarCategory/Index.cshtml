@@ -4,16 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Kategorie samochodów.</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p><a asp-action="Create">Stwórz nową kategorię.</a></p>
+}
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Typ pojazdu:
             </th>
             <th></th>
         </tr>
@@ -25,9 +27,13 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Informacje</a>
+
             </td>
         </tr>
 }

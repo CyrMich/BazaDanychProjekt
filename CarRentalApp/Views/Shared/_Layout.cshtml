@@ -29,6 +29,12 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="CarCategory" asp-action="Index">Kategorie aut</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="MyReservations">Moje Rezerwacje</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />

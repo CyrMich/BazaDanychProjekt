@@ -1,5 +1,6 @@
 ﻿using CarRentalApp.Areas.Identity.Data;
 using CarRentalApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -41,6 +42,7 @@ namespace CarRentalApp.Controllers
         // POST: CarController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Car car)
         {
             try
@@ -56,6 +58,7 @@ namespace CarRentalApp.Controllers
         }
 
         // GET: CarController/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var car = _context.Car.Find(id);
@@ -76,6 +79,7 @@ namespace CarRentalApp.Controllers
         // POST: CarController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Car car)
         {
             try
@@ -91,6 +95,7 @@ namespace CarRentalApp.Controllers
         }
 
         // GET: CarController/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var car = _context.Car.Include(c => c.CarCategory).FirstOrDefault(c => c.Id == id);
@@ -102,6 +107,7 @@ namespace CarRentalApp.Controllers
         // POST: CarController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, Car car)
         {
             try

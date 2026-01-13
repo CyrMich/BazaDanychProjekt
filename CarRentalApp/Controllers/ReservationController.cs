@@ -48,6 +48,7 @@ namespace CarRentalApp.Controllers
         }
 
         // GET: ReservationController/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.Cars = new SelectList(_context.Car.ToList(), "Id", "FullName");
@@ -86,41 +87,105 @@ namespace CarRentalApp.Controllers
             ViewData["CarId"] = new SelectList(_context.Car , "Id", "Model", reservation.CarId);
             return View(reservation);
         }
+        [Authorize]
+        public async Task<IActionResult> MyReservations()
+        {
+            // Pobieramy ID zalogowanego użytkownika
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            var myReservations = await _context.Reservations
+                .Include(r => r.Car)
+                .Where(r => r.UserId == userId)
+                .OrderByDescending(r => r.StartDate) // Najnowsze na górze
+                .ToListAsync();
+
+            return View(myReservations);
+        }
         // GET: ReservationController/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
-            return View();
+            var reservation = _context.Reservations.Find(id);
+
+            if (reservation == null)
+                return NotFound();
+
+            ViewBag.Cars = new SelectList(
+                _context.Car.ToList(),
+                "Id",
+                "FullName",
+                reservation.CarId
+            );
+
+            return View(reservation);
         }
 
         // POST: ReservationController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [Authorize]
+        public async Task<ActionResult> EditAsync(int id, Reservation reservation)
         {
-            try
+            if (id != reservation.Id) return NotFound();
+
+            var existingReservation = await _context.Reservations.AsNoTracking()
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            if (reservation.UserId == null && existingReservation != null)
             {
+                reservation.UserId = existingReservation.UserId;
+            }
+
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(reservation);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(reservation);
         }
 
         // GET: ReservationController/Delete/5
-        public ActionResult Delete(int id)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var reservation = await _context.Reservations
+                .Include(r => r.Car)  // Dołączamy, by pokazać co usuwamy
+                .Include(r => r.User) // Dołączamy, by pokazać czyja to rezerwacja
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+
+            return View(reservation);
         }
 
         // POST: ReservationController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(int id, Reservation reservation)
         {
             try
             {
+                _context.Reservations.Remove(reservation);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
